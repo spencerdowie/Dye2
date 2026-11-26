@@ -1,4 +1,3 @@
-// app/api/users/route.js
 import dbConnect from "@/lib/database";
 import User, { IUser } from "@/models/User";
 import { NextRequest, NextResponse } from "next/server";

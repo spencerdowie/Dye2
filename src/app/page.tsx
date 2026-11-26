@@ -1,4 +1,3 @@
-import ScriptCard from "@/app/dashboard/components/script-card";
 import { redirect } from "next/navigation";
 
 export default async function Dashboard() {

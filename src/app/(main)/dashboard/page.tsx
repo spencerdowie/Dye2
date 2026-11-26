@@ -5,10 +5,10 @@ import { Suspense, use } from "react";
 
 const userID = "6ac51e1ea1f22fb557b182bc";
 
-function ScriptView({ scripts }: { scripts: Promise<IUser> }) {
+function ScriptView({ scripts }: { scripts: Promise<IScript> }) {
   "use client";
-  const user = use(scripts);
-  //console.log(user);
+  const ownedScripts = use(scripts);
+  console.log(ownedScripts);
   return (
     <>
       <div className="col">
@@ -40,13 +40,19 @@ function ScriptView({ scripts }: { scripts: Promise<IUser> }) {
 }
 
 export default async function Dashboard() {
-  function getScripts() {
+  function getUser(userID: string) {
     return fetch("http://localhost:3000/api/user/" + userID).then((data) =>
       data.json(),
     );
   }
+  function getScripts(userID: string) {
+    return fetch("http://localhost:3000/api/script/" + userID).then((data) =>
+      data.json(),
+    );
+  }
 
-  const scripts: Promise<IUser> = getScripts();
+  const user: Promise<IUser> = getUser(userID);
+  const scripts: Promise<IScript> = getScripts(userID);
 
   return (
     <>
